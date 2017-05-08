@@ -1,0 +1,121 @@
+﻿@model Lakeside.Models.ViewModels.FilmEditVM
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>FilmEdit</title>
+    <style type="text/css">
+        .field-validation-valid, .validation-summary-valid {
+            display: none;
+        }
+
+        .field-validation-error {
+            color: #f00;
+        }
+
+        .validation-summary-errors {
+            color: #f00;
+            font-weight: bold;
+        }
+
+        .input-validation-error {
+            border: 2px solid #f00;
+            background-color: #fee;
+        }
+
+        input[type="checkbox"].input-validation-error {
+            outline: 2px solid #f00;
+        }
+    </style>
+</head>
+<body style="background-color:wheat;">
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <div>
+        @Html.ActionLink("Back to List", "FilmList")
+    </div>
+    @using (Html.BeginForm(null, null, FormMethod.Post,
+                                              new { enctype = "multipart/form-data" }))
+    {
+        @Html.ValidationSummary(false)
+
+        <table style="width:625px">
+            <tr>
+                <td style="width:475px">
+                    @Html.LabelFor(m => m.film.FilmID)
+                    <br>
+                    @Html.TextBoxFor(m => m.film.FilmID,
+                          new { style = "width:50px", Name = "FilmID", @readonly = "true" })
+                    <br>
+                    @Html.LabelFor(m => m.film.Title)
+                    <br>
+                    @Html.TextBoxFor(m => m.film.Title,
+                           new { style = "width:400px", Name = "Title", @maxlength = "100" })
+                    @Html.ValidationMessageFor(m => m.film.Title)
+                    <br>
+                    @Html.LabelFor(m => m.film.Link)
+                    <br>
+                    @Html.TextBoxFor(m => m.film.Link,
+                           new { style = "width:400px", Name = "Link", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.film.Link)
+                    <br>
+                    @Html.LabelFor(m => m.film.YearMade)
+                    <br>
+                    @Html.TextBoxFor(m => m.film.YearMade,
+                           new { style = "width:40px", Name = "YearMade", @maxlength = "4" })
+                    @Html.ValidationMessageFor(m => m.film.YearMade)
+                    <br>
+                    @Html.LabelFor(m => m.film.Imagefile)
+                    <br>
+                    @Html.TextBoxFor(m => m.film.Imagefile,
+                          new { style = "width:200px", Name = "Imagefile", @readonly = "true" })
+                    <br />
+                    <input type="file" name="UploadFile" style="width:300px;" />
+                </td>
+                <td style="width:150px">
+                    <img src="~/Content/Images/films/@Model.film.Imagefile" style="width:130px;height:200px" />
+                </td>
+            </tr>
+        </table>
+
+        <div class="editor-label">
+            @Html.LabelFor(m => m.film.Synopsis)
+        </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(m => m.film.Synopsis,
+                         new { @cols = 80, Name = "Synopsis", @rows = 12 })
+                @Html.ValidationMessageFor(m => m.film.Synopsis)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(m => m.film.Resources)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(m => m.film.Resources,
+                       new { @cols = 80, Name = "Resources", @rows = 12 })
+                @Html.ValidationMessageFor(m => m.film.Resources)
+            </div>
+            <fieldset style="width:200px;background-color:white;">
+                <legend>Categories Film is In</legend>
+                @{
+                    for (var x = 0; x < Model.FilmCatList.Count(); x++)
+                    {
+                        @Html.CheckBox("cat-" + Model.FilmCatList[x].ID, Model.FilmCatList[x].Checked)
+                        @Html.DisplayFor(m => Model.FilmCatList[x].Name)
+                        <br />
+                    }
+                }
+            </fieldset>
+            <br />
+            <input type="submit" value="Save" />
+                    }@*end of beginform block*@
+                </body>
+            </html>
