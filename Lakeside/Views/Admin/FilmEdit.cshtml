@@ -43,7 +43,7 @@
         @Html.ActionLink("Back to List", "FilmList")
     </div>
     @using (Html.BeginForm(null, null, FormMethod.Post,
-                                              new { enctype = "multipart/form-data" }))
+                                                      new { enctype = "multipart/form-data" }))
     {
         @Html.ValidationSummary(false)
 
@@ -89,33 +89,34 @@
         <div class="editor-label">
             @Html.LabelFor(m => m.film.Synopsis)
         </div>
-            <div class="editor-field">
-                @Html.TextAreaFor(m => m.film.Synopsis,
+        <div class="editor-field">
+            @Html.TextAreaFor(m => m.film.Synopsis,
                          new { @cols = 80, Name = "Synopsis", @rows = 12 })
-                @Html.ValidationMessageFor(m => m.film.Synopsis)
-            </div>
+            @Html.ValidationMessageFor(m => m.film.Synopsis)
+        </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(m => m.film.Resources)
-            </div>
-            <div class="editor-field">
-                @Html.TextAreaFor(m => m.film.Resources,
-                       new { @cols = 80, Name = "Resources", @rows = 12 })
-                @Html.ValidationMessageFor(m => m.film.Resources)
-            </div>
-            <fieldset style="width:200px;background-color:white;">
-                <legend>Categories Film is In</legend>
-                @{
-                    for (var x = 0; x < Model.FilmCatList.Count(); x++)
-                    {
-                        @Html.CheckBox("cat-" + Model.FilmCatList[x].ID, Model.FilmCatList[x].Checked)
-                        @Html.DisplayFor(m => Model.FilmCatList[x].Name)
-                        <br />
-                    }
+        <div class="editor-label">
+            @Html.LabelFor(m => m.film.Resources)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(m => m.film.Resources,
+                    new { @cols = 80, Name = "Resources", @rows = 12 })
+            @Html.ValidationMessageFor(m => m.film.Resources)
+        </div>
+        <fieldset style="width:200px;background-color:white;">
+            <legend>Categories Film is In</legend>
+            @{
+                for (var x = 0; x < Model.FilmCatList.Count(); x++)
+                {
+                    @Html.CheckBox("cat-" + Model.FilmCatList[x].ID, Model.FilmCatList[x].Checked)
+                    @Html.DisplayFor(m => Model.FilmCatList[x].Name)
+                    <br />
                 }
-            </fieldset>
-            <br />
-            <input type="submit" value="Save" />
-                    }@*end of beginform block*@
-                </body>
-            </html>
+            }
+        </fieldset>
+        <br />
+        <input type="submit" value="Save" />
+    }@*end of beginform block*@
+
+</body>
+</html>
