@@ -84,83 +84,83 @@ namespace Lakeside.Controllers
         }
 
         //member action methods
-        public ActionResult MemberList()
-        {
-            dbcon.Open();
-            List<Member> mbrlist = Member.GetMemberList(dbcon);
-            dbcon.Close();
-            return View(mbrlist);
-        }
+        //public ActionResult MemberList()
+        //{
+        //    dbcon.Open();
+        //    List<Member> mbrlist = Member.GetMemberList(dbcon);
+        //    dbcon.Close();
+        //    return View(mbrlist);
+        //}
 
         // [HttpPost]
-        public ActionResult MemberCreate()
-        {
-            Member mbr = new Member();
-            mbr.Avatar = "noname.jpg";
-            mbr.Email = "enter value";
-            mbr.MemberName = "enter value";
-            mbr.PWD = "P@ssword01";
-            dbcon.Open();
-            int intresult = Member.CUDMember(dbcon, "create", mbr);
-            dbcon.Close();
-            return RedirectToAction("MemberList", "Admin");
-        }
+        //public ActionResult MemberCreate()
+        //{
+        //    Member mbr = new Member();
+        //    mbr.Avatar = "noname.jpg";
+        //    mbr.Email = "enter value";
+        //    mbr.MemberName = "enter value";
+        //    mbr.PWD = "P@ssword01";
+        //    dbcon.Open();
+        //    int intresult = Member.CUDMember(dbcon, "create", mbr);
+        //    dbcon.Close();
+        //    return RedirectToAction("MemberList", "Admin");
+        //}
 
         //[HttpPost]
-        public ActionResult MemberDelete(int id)
-        {
-            try
-            {
-                Member mbr = new Member();
-                mbr.MemberID = id;
-                dbcon.Open();
-                int intresult = Member.MemberDelete(dbcon, id);
-                dbcon.Close();
-                return RedirectToAction("Memberlist");
-            } catch (Exception ex)
-            {
-                @ViewBag.errormsg = ex.Message;
-                if (dbcon != null && dbcon.State == ConnectionState.Open) dbcon.Close();
-                return View("error");
-            }
-        }
+        //public ActionResult MemberDelete(int id)
+        //{
+        //    try
+        //    {
+        //        Member mbr = new Member();
+        //        mbr.MemberID = id;
+        //        dbcon.Open();
+        //        int intresult = Member.MemberDelete(dbcon, id);
+        //        dbcon.Close();
+        //        return RedirectToAction("Memberlist");
+        //    } catch (Exception ex)
+        //    {
+        //        @ViewBag.errormsg = ex.Message;
+        //        if (dbcon != null && dbcon.State == ConnectionState.Open) dbcon.Close();
+        //        return View("error");
+        //    }
+        //}
 
-        public ActionResult MemberEdit(int id)
-        {
-            dbcon.Open();
-            Member mbr = Member.GetMemberSingle(dbcon, id);
-            dbcon.Close();
-            return View(mbr);
-        }
+        //public ActionResult MemberEdit(int id)
+        //{
+        //    dbcon.Open();
+        //    Member mbr = Member.GetMemberSingle(dbcon, id);
+        //    dbcon.Close();
+        //    return View(mbr);
+        //}
 
-        [HttpPost]
-        public ActionResult MemberEdit(Member mbr, HttpPostedFileBase UploadFile)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    if (UploadFile != null)
-                    {
-                        var fileName = Path.GetFileName(UploadFile.FileName);
-                        var filePath = Server.MapPath("/Content/Images/Members");
-                        string savedFileName = Path.Combine(filePath, fileName);
-                        UploadFile.SaveAs(savedFileName);
-                        mbr.Avatar = fileName;
-                    }
-                    dbcon.Open();
-                    int intresult = Member.CUDMember(dbcon, "update", mbr);
-                    dbcon.Close();
-                    return RedirectToAction("Memberlist");
-                }
-                return View(mbr);
-            } catch (Exception ex)
-            {
-                @ViewBag.errormsg = ex.Message;
-                if (dbcon != null && dbcon.State == ConnectionState.Open) dbcon.Close();
-                return View("error");
-            }
-        }
+        //[HttpPost]
+        //public ActionResult MemberEdit(Member mbr, HttpPostedFileBase UploadFile)
+        //{
+        //    try
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            if (UploadFile != null)
+        //            {
+        //                var fileName = Path.GetFileName(UploadFile.FileName);
+        //                var filePath = Server.MapPath("/Content/Images/Members");
+        //                string savedFileName = Path.Combine(filePath, fileName);
+        //                UploadFile.SaveAs(savedFileName);
+        //                mbr.Avatar = fileName;
+        //            }
+        //            dbcon.Open();
+        //            int intresult = Member.CUDMember(dbcon, "update", mbr);
+        //            dbcon.Close();
+        //            return RedirectToAction("Memberlist");
+        //        }
+        //        return View(mbr);
+        //    } catch (Exception ex)
+        //    {
+        //        @ViewBag.errormsg = ex.Message;
+        //        if (dbcon != null && dbcon.State == ConnectionState.Open) dbcon.Close();
+        //        return View("error");
+        //    }
+        //}
 
     }
 }
