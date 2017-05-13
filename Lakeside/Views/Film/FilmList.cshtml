@@ -4,11 +4,12 @@
 @using (Html.BeginForm("FilmList", "Film", FormMethod.Post))
 {
     <div class="row">
-        <text>Choose a Category: </text>
-        @Html.DropDownListFor(m => m.selectedcatid, Model.catlist,
-        new { onchange = "document.forms[0].submit();" })
+        <div class="col-md-12">
+            <text>Choose a Category: </text>
+            @Html.DropDownListFor(m => m.selectedcatid, Model.catlist,
+            new { onchange = "document.forms[0].submit();" })
+        </div>
     </div>
-    @*....*@
 
     foreach (var item in Model.films)
     {
@@ -20,9 +21,9 @@
             <div class="col-md-10">
                 @*....*@
                 @Html.ActionLink(@item.Title, "ViewFilm", new { id = @item.FilmID })
-                @*....*@
+                <br />
                 @Html.Raw(@item.Synopsis.ToString().Replace(Environment.NewLine, "<br />"))
-                @*....*@
+                
             </div>
         </div>
     }@*end of foreach loop*@

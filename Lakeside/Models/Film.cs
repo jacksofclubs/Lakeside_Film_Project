@@ -134,7 +134,7 @@ namespace Lakeside.Models
                 obj.FilmID = Convert.ToInt32(myReader["FilmID"].ToString());
                 obj.Title = myReader["Title"].ToString();
                // obj.Link = myReader["Link"].ToString();
-                //obj.YearMade = Convert.ToInt32(myReader["YearMade"].ToString());
+               //obj.YearMade = Convert.ToInt32(myReader["YearMade"].ToString());
                 obj.Imagefile = myReader["Imagefile"].ToString();
                 obj.Synopsis = myReader["Synopsis"].ToString();
                 //obj.Resources = myReader["Resources"].ToString();
