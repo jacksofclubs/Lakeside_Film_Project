@@ -1,8 +1,18 @@
-﻿@foreach (var item in Model.reviewlist)
+﻿@model Lakeside.Models.ViewModels.ViewFilmVM
+
+@using (Html.BeginForm("ViewFilm", "Film", FormMethod.Post))
 {
-    @*....*@
-    <img src="~/content/images/@(item.Rating.ToString())_star.jpg" /><br />
-    <img src="~/content/images/members/@item.Avatar"
-         style="width:100px;height:100px" />
-    @*....*@
+
+    // For the film model, display information
+    <div class="row">
+        <div class="col-md-2 center">
+            <img src="~/content/images/films/@Model.selectedfilm.Imagefile" style="xxxx" class="filmlist-image-film" />
+        </div>
+
+    </div>
+
+
+    // For each review, display
+
+
 }
