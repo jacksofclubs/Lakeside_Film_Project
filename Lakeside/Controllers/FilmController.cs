@@ -50,5 +50,23 @@ namespace Lakeside.Controllers
             new { id = Convert.ToInt32(fc["selectedcatid"]) });
         }
 
+        public ActionResult ViewFilm(int id)
+        {
+            ViewFilmVM vm = new ViewFilmVM();
+            try
+            {
+                dbcon.Open();
+                vm.selectedfilm = Film.GetFilmSingle(dbcon, id);
+                vm.reviewlist = FilmReview.GetFilmReviewList(dbcon, id);
+                dbcon.Close();
+            } catch (Exception ex)
+            {
+                @ViewBag.errormsg = ex.Message;
+                if (dbcon != null && dbcon.State == ConnectionState.Open) dbcon.Close();
+                return View("error");
+            }
+            return View(vm);
+        }
+
     }
 }

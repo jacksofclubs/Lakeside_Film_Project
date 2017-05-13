@@ -1,0 +1,8 @@
+﻿@foreach (var item in Model.reviewlist)
+{
+    @*....*@
+    <img src="~/content/images/@(item.Rating.ToString())_star.jpg" /><br />
+    <img src="~/content/images/members/@item.Avatar"
+         style="width:100px;height:100px" />
+    @*....*@
+}
