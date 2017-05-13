@@ -16,9 +16,15 @@ textarea {
     max-width: 280px;
 }
 
-.filmlist-image-film {
+.filmlist-image-film,
+.viewfilm-image-film {
     width: 130px;
     height: 200px;
+}
+
+.viewfilm-image-avatar {
+    width: 100px;
+    height:100px;
 }
 
 .row {

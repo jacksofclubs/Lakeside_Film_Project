@@ -6,13 +6,39 @@
     // For the film model, display information
     <div class="row">
         <div class="col-md-2 center">
-            <img src="~/content/images/films/@Model.selectedfilm.Imagefile" style="xxxx" class="filmlist-image-film" />
+            <img src="~/content/images/films/@Model.selectedfilm.Imagefile" class="viewfilm-image-film" />
         </div>
-
+        <div class="col-md-10">
+            <h3>@Html.Raw(@Model.selectedfilm.Title)</h3>
+            <p>
+                <a href="@Model.selectedfilm.Link">IMDB Link</a>
+                <br />
+                @Html.Raw(Model.selectedfilm.Synopsis.ToString().Replace(Environment.NewLine, "<br />"))
+            </p>
+            <hr />
+            <h4>Additional Resources</h4>
+            <text>@Model.selectedfilm.Resources</text>
+        </div>
     </div>
 
-
     // For each review, display
+    foreach (var item in Model.reviewlist)
+    {
+        <hr />
 
+        <div class="row">
+            <div class="col-md-2 center">
+                <img src="~/content/images/@(item.Rating.ToString())_star.jpg" /><br />
+                <img src="~/content/images/members/@item.Avatar"
+                     class="viewfilm-image-avatar" />
+                <h4>@item.MemberName</h4>
+                <h4>Review: @item.ReviewDate.ToString("M/dd/yy")</h4>
+            </div>
+            <div class="col-md-10">
+                <h3>@item.ReviewTitle</h3>
+                <p>@item.FullReview</p>
+            </div>
+        </div>
+    }
 
 }
