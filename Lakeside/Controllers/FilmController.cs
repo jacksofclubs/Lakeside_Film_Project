@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using System.Data.SqlClient;
 using System.Configuration;
 using Lakeside.Models.ViewModels;
+using System.Data;
+using Lakeside.Models;
+using System.IO;
 
 namespace Lakeside.Controllers
 {
