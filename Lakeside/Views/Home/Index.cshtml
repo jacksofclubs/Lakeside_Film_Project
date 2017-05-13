@@ -4,3 +4,13 @@
 }
 
 <h2>Home Page - Lakeside Film Society</h2>
+
+@using (Html.BeginForm("SetMemberid", "Home"))
+{
+    <text>
+        Current Memberid: <input type="text" name="memberid" style="width:35px"
+                                 value="@ViewBag.memberid" />
+        <br />
+        <input type="submit" value="Set Memberid" />
+    </text>
+}@*end of beginform block*@
