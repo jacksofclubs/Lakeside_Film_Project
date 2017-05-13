@@ -16,3 +16,12 @@ textarea {
     max-width: 280px;
 }
 
+.filmlist-image-film {
+    width: 130px;
+    height: 200px;
+}
+
+.row {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

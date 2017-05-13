@@ -1,0 +1,30 @@
+﻿
+@model Lakeside.Models.ViewModels.FilmListVM
+@*....*@
+@using (Html.BeginForm("FilmList", "Film", FormMethod.Post))
+{
+    <div class="row">
+        <text>Choose a Category: </text>
+        @Html.DropDownListFor(m => m.selectedcatid, Model.catlist,
+        new { onchange = "document.forms[0].submit();" })
+    </div>
+    @*....*@
+
+    foreach (var item in Model.films)
+    {
+    <hr />
+        <div class="row">
+            <div class="col-md-2">
+                <img src="~/content/images/films/@item.Imagefile" style="xxxx" class="filmlist-image-film" />
+            </div>
+            <div class="col-md-10">
+                @*....*@
+                @Html.ActionLink(@item.Title, "ViewFilm", new { id = @item.FilmID })
+                @*....*@
+                @Html.Raw(@item.Synopsis.ToString().Replace(Environment.NewLine, "<br />"))
+                @*....*@
+            </div>
+        </div>
+    }@*end of foreach loop*@
+
+}@*end of BeginForm block*@

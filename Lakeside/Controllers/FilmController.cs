@@ -42,6 +42,7 @@ namespace Lakeside.Controllers
             }
             return View(filmvm);
         }
+
         [HttpPost]
         public ActionResult FilmList(FormCollection fc)
         {
