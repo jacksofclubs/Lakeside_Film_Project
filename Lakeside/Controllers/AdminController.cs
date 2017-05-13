@@ -16,6 +16,7 @@ namespace Lakeside.Controllers
     {
         SqlConnection dbcon = new SqlConnection(ConfigurationManager.ConnectionStrings["lakesidedb"].
                                  ConnectionString.ToString());
+
         public ActionResult FilmList()
         {
             dbcon.Open();
@@ -38,6 +39,7 @@ namespace Lakeside.Controllers
             dbcon.Close();
             return RedirectToAction("FilmList", "Admin");
         }
+
         public ActionResult FilmDelete(int id)
         {
             dbcon.Open();
@@ -55,6 +57,7 @@ namespace Lakeside.Controllers
             dbcon.Close();
             return View(filmvm);
         }
+
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult FilmEdit(FormCollection fc, HttpPostedFileBase UploadFile)
@@ -88,6 +91,7 @@ namespace Lakeside.Controllers
             dbcon.Close();
             return View(mbrlist);
         }
+
         // [HttpPost]
         public ActionResult MemberCreate()
         {
@@ -128,6 +132,7 @@ namespace Lakeside.Controllers
             dbcon.Close();
             return View(mbr);
         }
+
         [HttpPost]
         public ActionResult MemberEdit(Member mbr, HttpPostedFileBase UploadFile)
         {
