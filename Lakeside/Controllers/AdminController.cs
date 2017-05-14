@@ -105,7 +105,6 @@ namespace Lakeside.Controllers
             return RedirectToAction("MemberList", "Admin");
         }
 
-        //[HttpPost]
         public ActionResult MemberDelete(int id)
         {
             try

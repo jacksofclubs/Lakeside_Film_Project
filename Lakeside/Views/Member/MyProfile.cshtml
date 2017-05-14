@@ -1,0 +1,119 @@
+﻿
+
+@model Lakeside.Models.Member
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>My Profile</title>
+    <style type="text/css">
+        .field-validation-valid, .validation-summary-valid {
+            display: none;
+        }
+
+        .field-validation-error {
+            color: #f00;
+        }
+
+        .validation-summary-errors {
+            color: #f00;
+            font-weight: bold;
+        }
+
+        .input-validation-error {
+            border: 2px solid #f00;
+            background-color: #fee;
+        }
+
+        input[type="checkbox"].input-validation-error {
+            outline: 2px solid #f00;
+        }
+    </style>
+</head>
+<body style="background-color:wheat;">
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @*<div>
+        @Html.ActionLink("Back to List", "MemberList")
+    </div>*@
+    @using (Html.BeginForm(null, null, FormMethod.Post,
+                                                              new { enctype = "multipart/form-data" }))
+    {
+        @Html.ValidationSummary(true)
+        <div class="editor-label">
+            @Html.LabelFor(m => m.MemberID)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.MemberID, new { style = "width:30px", @readonly = "true" })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(m => m.Email)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.Email, new { style = "width:400px", @maxlength = "50" })
+            <br />
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(m => m.PWD)
+        </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(m => m.PWD, new { style = "width:160px", @maxlength = "20" })
+                        <br />
+                        @Html.ValidationMessageFor(m => m.PWD)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.MemberName)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(m => m.MemberName, new { style = "width:240px", @maxlength = "30" })
+                        <br />
+                        @Html.ValidationMessageFor(m => m.MemberName)
+                    </div>
+                    <table style="width:425px">
+                        <tr>
+                            <td style="width:325px">
+                                <div class="editor-label">
+                                    @Html.LabelFor(m => m.Avatar)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(m => m.Avatar,
+                                     new { style = "width:200px", @readonly = "true" })<br />
+                                    <input type="file" name="UploadFile" value="" />
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(m => m.Admin)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(m => m.Admin, new { style = "width:40px", @maxlength = "1" })
+                                    <br />
+                                    @Html.ValidationMessageFor(m => m.Admin)
+                                </div>
+
+                                <br />
+                                <input type="submit" value="Save Changes" />
+                            </td>
+                            <td style="width:125px">
+
+                                <img src="~/content/images/members/@Model.Avatar"
+                                     style="width:100px;height:100px" />
+                            </td>
+                        </tr>
+                    </table>
+
+    }@*end of beginform block*@
+
+
+</body>
+
+</html>

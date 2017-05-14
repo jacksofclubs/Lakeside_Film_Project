@@ -89,5 +89,43 @@ namespace Lakeside.Controllers
             return RedirectToAction("MyReview", "Member", new { id = filmid });
         }
 
+        public ActionResult MyProfile()
+        {
+            dbcon.Open();
+            int mbrid = Convert.ToInt32(Session["memberid"].ToString());
+            Member mbr = Member.GetMemberSingle(dbcon, mbrid);
+            dbcon.Close();
+            return View(mbr);
+        }
+
+        [HttpPost]
+        public ActionResult MyProfile(Member mbr, HttpPostedFileBase UploadFile)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (UploadFile != null)
+                    {
+                        var fileName = Path.GetFileName(UploadFile.FileName);
+                        var filePath = Server.MapPath("/Content/Images/Members");
+                        string savedFileName = Path.Combine(filePath, fileName);
+                        UploadFile.SaveAs(savedFileName);
+                        mbr.Avatar = fileName;
+                    }
+                    dbcon.Open();
+                    int intresult = Member.CUDMember(dbcon, "update", mbr);
+                    dbcon.Close();
+                    return RedirectToAction("MyProfile");
+                }
+                return View(mbr);
+            } catch (Exception ex)
+            {
+                @ViewBag.errormsg = ex.Message;
+                if (dbcon != null && dbcon.State == ConnectionState.Open) dbcon.Close();
+                return View("error");
+            }
+        }
+
     }
 }
