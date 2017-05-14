@@ -101,6 +101,7 @@ namespace Lakeside.Controllers
         [HttpPost]
         public ActionResult MyProfile(Member mbr, HttpPostedFileBase UploadFile)
         {
+            mbr.MemberID = Convert.ToInt32(Session["memberid"].ToString());
             try
             {
                 if (ModelState.IsValid)
