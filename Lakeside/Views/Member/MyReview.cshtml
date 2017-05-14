@@ -7,11 +7,60 @@
             <text>Choose a Film: </text>
             @Html.DropDownListFor(m => m.SelectedFilm, Model.filmlist,
             new { onchange = "document.location.href='/member/myreview?id=' + this.value;" })
-            <input type="hidden" name="review.FilmID" value="@Model.SelectedFilm" />
-            <input type="hidden" name="review.MemberId" value="1" />
-            <input type="hidden" name="review.ReviewDate" value="01/01/2000" />
+            <input type="hidden" name="review.FilmID" value="@Model.review.FilmID" />
+            <input type="hidden" name="review.MemberId" value="@Convert.ToInt32(Session["memberid"].ToString())" />
+            <input type="hidden" name="review.ReviewDate" value="@Model.review.ReviewDate" />
+            <input type="hidden" name="cudAction" value="" id="cudAction"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Review Date</h4>
+            <input type="text" value="@Model.review.ReviewDate" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Rating</h4>
+            @Html.DropDownListFor(m => m.review.Rating, new List<SelectListItem>
+            {new SelectListItem () { Value = "5" , Text = "5 - Excellant"},
+             new SelectListItem () { Value = "4" , Text = "4 - Very Good"},
+             new SelectListItem () { Value = "3" , Text = "3 - Okay"},
+             new SelectListItem () { Value = "2" , Text = "2 - Fair"},
+             new SelectListItem () { Value = "1" , Text = "1 - Awfull"}
+            })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Review Title</h4>
+            <input type="text" name="review.ReviewTitle" value="@Model.review.ReviewTitle" class="myreview-full-width" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Full Review</h4>
+            <textarea name="review.FullReview" class="myreview-full-width">@Model.review.FullReview</textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- buttons go here   if Model.review.FilmID == 0, then no review, otherwise there is a review-->
+            @if (Model.review.FilmID == 0)
+            {
+                <input type="submit" value="Create Review" onclick="setAction('create')"/>
+            } else
+            {
+                <input type="submit" value="Update Review" onclick="setAction('update')"/>
+                <input type="submit" value="Delete Review" onclick="setAction('delete')"/>
+            }
         </div>
     </div>
 
-
 }
+
+<script>
+    function setAction(action) {
+        document.getElementById("cudAction").value = action;
+    }
+</script>

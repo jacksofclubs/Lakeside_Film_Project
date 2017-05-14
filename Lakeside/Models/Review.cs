@@ -20,8 +20,10 @@ namespace Lakeside.Models
         [Required]
         public int Rating { get; set; }
         [Required, MaxLength(100)]
+        [RegularExpression("^[^<>]{2,100}$", ErrorMessage = "Review Title is not valid")]
         public string ReviewTitle { get; set; }
         [Required, MaxLength(1000)]
+        [RegularExpression("^[^<>]{2,1000}$", ErrorMessage = "Full review is not valid")]
         public string FullReview { get; set; }
 
         public static Review GetReviewSingle(SqlConnection dbcon, int memberid, int filmid)
@@ -63,9 +65,9 @@ namespace Lakeside.Models
             else if (CUDAction == "update")
             {
                 cmd.CommandText = "UPDATE REVIEWS SET " +
-                    "ReviewDate = @ReviewDate " +
-                    "Rating = @Rating " +
-                    "ReviewTitle = @ReviewTitle " +
+                    "ReviewDate = @ReviewDate, " +
+                    "Rating = @Rating, " +
+                    "ReviewTitle = @ReviewTitle, " +
                     "FullReview = @FullReview " +
                     "WHERE MemberID = @MemberID AND FilmID = @FilmID";
                 cmd.Parameters.AddWithValue("@MemberID", SqlDbType.Int).Value = obj.MemberID;

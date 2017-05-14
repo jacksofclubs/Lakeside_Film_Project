@@ -35,3 +35,12 @@ textarea {
 .center {
     text-align: center;
 }
+
+.myreview-full-width {
+    max-width: 100%;
+    min-width: 50%;
+}
+
+textarea.myreview-full-width {
+    height: 300px;
+}

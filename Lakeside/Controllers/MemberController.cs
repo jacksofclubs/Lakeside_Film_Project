@@ -35,7 +35,7 @@ namespace Lakeside.Controllers
                 if (id != null) filmid = Convert.ToInt32(id.ToString());
                 else filmid = Convert.ToInt32(rvm.filmlist.ToList()[0].Value);
                 rvm.SelectedFilm = filmid;
-                rvm.review = Review.GetReviewSingle(dbcon, filmid, mbrid);
+                rvm.review = Review.GetReviewSingle(dbcon, mbrid, filmid);
                 dbcon.Close();
                 return View(rvm);
             } catch (Exception ex)
@@ -52,19 +52,33 @@ namespace Lakeside.Controllers
         {
             int filmid = review.FilmID;
             int intresult = 0;
+            string cudAction = fc["cudAction"];
+            review.MemberID = Convert.ToInt32(Session["memberid"]);
+            review.ReviewDate = DateTime.Now;
             if (ModelState.IsValid)
             {
-                review.MemberID = Convert.ToInt32(Session["memberid"]);
-                review.ReviewDate = DateTime.Now;
                 try
                 {
                     if (dbcon.State == ConnectionState.Closed) dbcon.Open();
-                    //if (fc["btnSave"] != null)
-                    // update logic here
-                    //else if (fc["btnCreate"] != null)
-                    // create logic here
-                    //else if (fc["btnDelete"] != null)
-                    // delete logic here
+                    if (cudAction == "create")
+                    {
+                        review.FilmID = Convert.ToInt32(fc["SelectedFilm"]);
+                        filmid = review.FilmID;
+                        intresult = Review.CUDReview(dbcon, "create", review);
+
+                    } else if (cudAction == "update")
+                    {
+                        intresult = Review.CUDReview(dbcon, "update", review);
+
+                    } else if (cudAction == "delete")
+                    {
+                        intresult = Review.CUDReview(dbcon, "delete", review);
+
+                    } else
+                    {
+                        // throw exception
+                    }
+
                 } catch (Exception ex)
                 {
                     @ViewBag.errormsg = ex.Message;
