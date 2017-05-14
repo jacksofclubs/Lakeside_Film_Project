@@ -191,6 +191,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Film\FilmList.cshtml" />
     <Content Include="Views\Film\ViewFilm.cshtml" />
+    <Content Include="Views\Member\MyReview.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -201,7 +202,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Category\" />
-    <Folder Include="Views\Member\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

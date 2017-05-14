@@ -1,0 +1,17 @@
+﻿@model Lakeside.Models.ViewModels.ReviewVM
+
+@using (Html.BeginForm("MyReview", "Member", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <text>Choose a Film: </text>
+            @Html.DropDownListFor(m => m.SelectedFilm, Model.filmlist,
+            new { onchange = "document.location.href='/member/myreview?id=' + this.value;" })
+            <input type="hidden" name="review.FilmID" value="@Model.SelectedFilm" />
+            <input type="hidden" name="review.MemberId" value="1" />
+            <input type="hidden" name="review.ReviewDate" value="01/01/2000" />
+        </div>
+    </div>
+
+
+}
