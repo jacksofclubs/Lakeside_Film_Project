@@ -192,6 +192,8 @@
     <Content Include="Views\Film\FilmList.cshtml" />
     <Content Include="Views\Film\ViewFilm.cshtml" />
     <Content Include="Views\Member\MyReview.cshtml" />
+    <Content Include="Views\Admin\MemberEdit.cshtml" />
+    <Content Include="Views\Admin\MemberList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

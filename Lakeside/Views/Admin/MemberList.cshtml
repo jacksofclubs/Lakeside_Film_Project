@@ -1,0 +1,75 @@
+﻿
+@model IEnumerable<Lakeside.Models.Member>
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Maintain Members</title>
+    <style>
+        .gv, .gv td, .gv th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+            .gv td td {
+                border: 0;
+            }
+    </style>
+</head>
+<body style="background-color:wheat">
+    @Html.RouteLink("Home", new { Action = "Index", Controller = "Home" })<br />
+    <table class="gv" style="width:750px;background-color:white;">
+        <caption>Membership Roster</caption>
+        <tr>
+            <td style="width:100px">&nbsp;</td>
+            <td style="width:100px">&nbsp;</td>
+            <td style="width:550px">
+                Click @Html.RouteLink("Here", new { Action = "MemberCreate", Controller = "Admin" }) to Add a New member
+            </td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "MemberEdit", new { id = item.MemberID }) &nbsp;
+                    @Html.ActionLink("Delete", "MemberDelete",
+                          new { id = item.MemberID },
+                          new { onclick = "return confirm('Are you sure you wish to delete this Member?');" })
+                </td>
+                <td>
+                    <img src="~/content/images/members/@item.Avatar"
+                         style="width:100px;height:100px" />
+                </td>
+                <td>
+                    <table style="width:540px;">
+                        <tr>
+                            <td style="width:80px;">Email:</td>
+                            <td style="width:360px;">@Html.DisplayFor(modelItem => item.Email)</td>
+                        </tr>
+                        <tr>
+                            <td>PWD:</td>
+                            <td>@Html.DisplayFor(modelItem => item.PWD)</td>
+                        </tr>
+                        <tr>
+                            <td>Name:</td>
+                            <td>@Html.DisplayFor(modelItem => item.MemberName)</td>
+                        </tr>
+                        <tr>
+                            <td>Imagefile:</td>
+                            <td>@Html.DisplayFor(modelItem => item.Avatar)</td>
+                        </tr>
+                        <tr>
+                            <td>Admin:</td>
+                            <td>@Html.DisplayFor(modelItem => item.Admin)</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
