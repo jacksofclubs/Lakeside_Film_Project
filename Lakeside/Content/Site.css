@@ -22,7 +22,8 @@ textarea {
     height: 200px;
 }
 
-.viewfilm-image-avatar {
+.viewfilm-image-avatar,
+.myprofile-image-avatar {
     width: 100px;
     height:100px;
 }
@@ -43,4 +44,26 @@ textarea {
 
 textarea.myreview-full-width {
     height: 300px;
+}
+
+.field-validation-valid, .validation-summary-valid {
+    display: none;
+}
+
+.field-validation-error {
+    color: #f00;
+}
+
+.validation-summary-errors {
+    color: #f00;
+    font-weight: bold;
+}
+
+.input-validation-error {
+    border: 2px solid #f00;
+    background-color: #fee;
+}
+
+input[type="checkbox"].input-validation-error {
+    outline: 2px solid #f00;
 }
