@@ -1,38 +1,38 @@
 ﻿@model IEnumerable<Lakeside.Models.Film>
 
-    <div class="row">
-        <div class="col-md-12">
-            @Html.RouteLink("Home", new { Action = "Index", Controller = "Home" })<br />
-            @Html.ActionLink("Create New", "FilmCreate")
-            </p>
-            <table class="table">
+<div class="row">
+    <div class="col-md-12">
+        @Html.RouteLink("Home", new { Action = "Index", Controller = "Home" })<br />
+        @Html.ActionLink("Create New", "FilmCreate")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FilmID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+    {
                 <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FilmID)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Title)
-                    </th>
-
-                    <th></th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FilmID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "FilmEdit", new { id = item.FilmID }) |
+                        @Html.ActionLink("Delete", "FilmDelete", new { id = item.FilmID })
+                    </td>
                 </tr>
+            }
 
-                @foreach (var item in Model)
-        {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FilmID)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "FilmEdit", new { id = item.FilmID }) |
-                            @Html.ActionLink("Delete", "FilmDelete", new { id = item.FilmID })
-                        </td>
-                    </tr>
-                }
-
-            </table>
-        </div>
+        </table>
     </div>
+</div>
