@@ -52,7 +52,7 @@
             } else
             {
                 <input type="submit" value="Update Review" onclick="setAction('update')"/>
-                <input type="submit" value="Delete Review" onclick="setAction('delete')"/>
+                <input type="submit" value="Delete Review" onclick="confirmDelete()"/>
             }
         </div>
     </div>
@@ -62,5 +62,11 @@
 <script>
     function setAction(action) {
         document.getElementById("cudAction").value = action;
+    }
+    function confirmDelete() {
+        var result = confirm("Are you sure you want to delete this review?");
+        if (result) {
+            setAction('delete');
+        }
     }
 </script>
